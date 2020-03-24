@@ -1,7 +1,7 @@
 version: '2'
 services:
   lancache-bundle:
-    image: josh5/lancache-bundle:latest
+    image: permissionbrick/lancache-bundle:latest
     env_file: .env
     ports:
       - ${LANCACHE_IP}:53:53/udp
