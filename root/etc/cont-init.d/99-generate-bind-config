@@ -190,6 +190,24 @@ done
 
 rm services.json
 
+echo "add Custom DNS Entries"
+
+for i in {1..9}
+do
+    if ! env | grep "CUSTOM_DNS_NAME_${i}=" >/dev/null 2>&1; then
+        continue
+    fi
+    CUSTOM_DNS_NAME=$(env | grep "CUSTOM_DNS_NAME_${i}=" | sed 's/.*=//')
+    echo "Entry $CUSTOM_DNS_NAME"
+    if ! env | grep "CUSTOM_DNS_HOST_${i}=" >/dev/null 2>&1; then
+        echo "CUSTOM_DNS_HOST_X entry not found"
+        continue
+    fi
+    CUSTOM_DNS_HOST=$(env | grep "CUSTOM_DNS_HOST_${i}=" | sed 's/.*=//')
+    echo "Enabling service with ip(s): $CUSTOM_DNS_HOST";
+    echo "$CUSTOM_DNS_NAME IN A $CUSTOM_DNS_HOST;" >> $CACHE_ZONE
+done
+
 echo ""
 echo " --- "
 echo ""
