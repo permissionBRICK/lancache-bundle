@@ -1,6 +1,9 @@
 # lancache-bundle
 A bundled lancache service based on https://github.com/lancachenet/
 
+This adds the option to add custom DNS entries.
+
+
 This is a bundled image containing everything as it is if you were to run the offical monolithic stack from lancachenet.
 
 
