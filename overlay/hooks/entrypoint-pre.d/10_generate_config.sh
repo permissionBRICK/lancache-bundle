@@ -186,10 +186,10 @@ do
     fi
     CUSTOM_DNS_HOST=$(env | grep "CUSTOM_DNS_HOST_${i}=" | sed 's/.*=//')
     echo "Enabling service with ip(s): $CUSTOM_DNS_HOST";
-    echo "custom_${i} IN A $CUSTOM_DNS_HOST;" >> $CACHE_ZONE
-	echo ";## custom_${i}" >> ${RPZ_ZONE}
+    echo "custom${i} IN A $CUSTOM_DNS_HOST;" >> $CACHE_ZONE
+	echo ";## custom${i}" >> ${RPZ_ZONE}
 	echo "32.$(reverseip $CUSTOM_DNS_HOST).rpz-client-ip      CNAME rpz-passthru.;" >> ${RPZ_ZONE}
-	echo "$CUSTOM_DNS_NAME IN CNAME custom_${i}.$LANCACHE_DNSDOMAIN.;" >> $RPZ_ZONE;
+	echo "$CUSTOM_DNS_NAME IN CNAME custom${i}.$LANCACHE_DNSDOMAIN.;" >> $RPZ_ZONE;
 done
 
 echo ""
