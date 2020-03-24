@@ -3,6 +3,12 @@ A bundled lancache service based on https://github.com/lancachenet/
 
 This adds the option to add custom DNS entries.
 
+Just set the new Parameters:
+CUSTOM_DNS_HOST_1: ip address
+CUSTOM_DNS_NAME_1: full dns name
+
+this can be used for Numbers from 1 to 9, for a maximum of 9 custom entries.
+
 
 This is a bundled image containing everything as it is if you were to run the offical monolithic stack from lancachenet.
 
