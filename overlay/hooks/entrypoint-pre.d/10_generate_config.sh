@@ -186,6 +186,12 @@ do
     fi
     CUSTOM_DNS_HOST=$(env | grep "CUSTOM_DNS_HOST_${i}=" | sed 's/.*=//')
     echo "Enabling service with ip(s): $CUSTOM_DNS_HOST";
+	if env | grep "CUSTOM_DNS_HOST_${i}_V6=" >/dev/null 2>&1; then
+        echo "CUSTOM_DNS_HOST_${i}_v6 entry found"
+		CUSTOM_DNS_HOST_V6=$(env | grep "CUSTOM_DNS_HOST_${i}_V6=" | sed 's/.*=//')
+		echo "custom${i} IN AAAA $CUSTOM_DNS_HOST_V6;" >> $CACHE_ZONE
+    fi
+    
     echo "custom${i} IN A $CUSTOM_DNS_HOST;" >> $CACHE_ZONE
 	echo ";## custom${i}" >> ${RPZ_ZONE}
 	echo "32.$(reverseip $CUSTOM_DNS_HOST).rpz-client-ip      CNAME rpz-passthru.;" >> ${RPZ_ZONE}
